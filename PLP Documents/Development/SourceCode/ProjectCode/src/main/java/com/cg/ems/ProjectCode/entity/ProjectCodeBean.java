@@ -4,12 +4,15 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.SequenceGenerator;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,7 +22,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 public class ProjectCodeBean 
 {
 	@Id
-	@GeneratedValue
+	@SequenceGenerator(name="MySeqGen",sequenceName="MyDbSeq",initialValue=5000,allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="MySeqGen")
 	private int projectId;
 	
 	
@@ -33,11 +37,11 @@ public class ProjectCodeBean
 	@Pattern(regexp = "^[A-Z]{3,}$", message= "Should have minimum 3 letters all in uppercase.")
 	private String businessUnit;
 	
-	@NotEmpty(message="Start Date should not be empty and should be in format YYYY-MM-DD ")
+	@NotEmpty(message="Start Date should not be empty.")
 	@Pattern(regexp="^^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$",message="Start Date should be in format dd/mm/yyyy")
 	private String startDate;
 	
-	@NotEmpty(message="End Date should not be empty and should be in format YYYY-MM-DD ")
+	@NotEmpty(message="End Date should not be empty. ")
 	@Pattern(regexp="^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$",message="End Date should be in format dd/mm/yyyy")
 	private String endDate;
 

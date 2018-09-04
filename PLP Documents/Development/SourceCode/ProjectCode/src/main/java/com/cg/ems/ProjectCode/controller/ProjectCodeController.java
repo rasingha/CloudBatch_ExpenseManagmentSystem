@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,7 @@ import com.cg.ems.ProjectCode.entity.ProjectCodeBean;
 import com.cg.ems.ProjectCode.exception.ProjectCodeException;
 import com.cg.ems.ProjectCode.service.ProjectCodeServiceImpl;
 
-@RefreshScope
+
 @RestController
 @RequestMapping("/api")
 public class ProjectCodeController {
@@ -57,19 +56,25 @@ public class ProjectCodeController {
 	}
 	
 	@PutMapping("/project")
-	public void updateProjectCode(@RequestBody ProjectCodeBean project) {
+	public void updateProjectCode(@Valid @RequestBody ProjectCodeBean project) {
 		
+		ProjectCodeBean projectCodeBean= projectService.viewProjectCodeById(project.getProjectId());
+		if( projectCodeBean == null)
+	    {
+	    	throw new ProjectCodeException(" Project Not Found ");
+	    }
 		projectService.updateProjectCode(project);
 	}
 	
 	@DeleteMapping("/project/{projectId}")
 	public void deleteProjectCodeById(@PathVariable int projectId) {
 		
+		ProjectCodeBean project= projectService.viewProjectCodeById(projectId);
+		if( project == null)
+	    {
+	    	throw new ProjectCodeException(" Project Not Found ");
+	    }
 		projectService.deleteProjectCodeById(projectId);
 	}
 	
-	/*@DeleteMapping("/customers")
-	public void deleteAllCustomer() {
-		customerService.deleteAll();
-	}*/
 }
