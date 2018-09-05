@@ -1,0 +1,36 @@
+version: '2.0'
+services:
+    eureka-server:
+        container_name: eureka-server
+        build:
+            context: .
+            dockerfile: Docker-EurekaServer
+        image: eureka-server
+        expose:
+            - 1111
+        ports:
+            - 80:1111
+        networks:
+            - emp-network
+
+    expense-code:
+        container_name: expense-code
+        depends_on:
+            - eureka-server
+        links:
+            - eureka-server
+        build:
+            context: .
+            dockerfile: Docker-ExpenseCode
+        environment:
+            eureka.client.serviceUrl.defaultZone: http://eureka-server:1111/eureka
+        image: expense-code
+        expose:
+            - 2222
+        ports:
+            - 2222:2222
+        networks:
+            - emp-network
+networks:
+    emp-network:
+        driver: bridge

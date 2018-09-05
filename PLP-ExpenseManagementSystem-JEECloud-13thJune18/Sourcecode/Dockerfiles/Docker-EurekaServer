@@ -1,0 +1,5 @@
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ADD EurekaServer.jar EurekaServer.jar
+EXPOSE 1111
+ENTRYPOINT ["java","-jar", "EurekaServer.jar"]

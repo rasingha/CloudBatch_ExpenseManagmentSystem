@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	  <title>Customer Details </title>
+	  <meta charset="utf-8" />
+
+
+      <script src="/js/jquery-3.2.1.min.js"></script>
+	  <script src="/js/myscript.js"></script>
+
+</head>
+<body>
+	<h2 align="center" style="color:blue">Expense Details</h2>
+
+ 
+	
+	<h4 align="center" style="color:tomato" >Enter Employee ID : 
+	<input type="text" id="eid" name="empid" pattern="[1-9]|[1-9][0-9]{1,}" title="Enter a Valid ID" placeholder="Enter ID"  required/><br></h4>
+	
+	
+	<div  style="margin:20px 0px 20px 0px" align="center">
+	
+		<button id="getEmployeeId" type="submit" >Get Employee Details</button>
+		<div id="getResultDiv" style="padding:20px 10px 20px 50px">
+	        <ul class="list-group">
+	    	</ul>
+	    	
+    	</div>
+	</div>
+	
+	
+	<div class="pvisible">
+	<h4 align="center" style="color:tomato"  >Select Project ID 	<select id="mylistId"> 
+	<option value="" selected>Select Project Code</option>
+	    	</select><br></h4>
+	<div  style="margin:20px 0px 20px 0px" align="center">
+		<button id="getProjectId" type="submit" >Get Project Details</button>
+		<div id="getProjectDiv" style="padding:20px 10px 20px 50px">
+	        <ul class="project-group">
+	    	</ul>
+    	</div>
+	</div>
+	</div>
+	
+	<div class="tvisible">
+	<h4 align="center" style="color:tomato"  >Select Expense Type 	<select id="mylisttId"> 
+	<option value="" selected>Select Expense Type</option>
+	    	</select><br></h4>
+	<div  style="margin:20px 0px 20px 0px" align="center">
+		<button id="getExpenseTypeId" type="submit" >Get Expense Type</button>
+		<div id="getExpenseTypeDiv" style="padding:20px 10px 20px 50px">
+	        <ul class="expense-group">
+	    	</ul>
+    	</div>
+	</div>
+	</div>
+	<div id="insertClaim" align="center">
+	<h4 align="center" style="color:tomato" >Enter Amount : 
+	<input type="text" id="amount" name="amount" placeholder="Enter Amount"  required/><br></h4>
+	<button id="postExpenseDetail" type="submit" >Submit Claim</button>
+	</div>
+	<h2 id="claimSucess"></h2>
+</body>
+</html>

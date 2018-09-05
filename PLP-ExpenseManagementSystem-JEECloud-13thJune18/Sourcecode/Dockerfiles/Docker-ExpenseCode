@@ -1,0 +1,5 @@
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ADD ExpenseCode.jar ExpenseCode.jar
+EXPOSE 2222
+ENTRYPOINT ["java","-Xms128m", "-Xmx128m", "-jar", "ExpenseCode.jar"]
