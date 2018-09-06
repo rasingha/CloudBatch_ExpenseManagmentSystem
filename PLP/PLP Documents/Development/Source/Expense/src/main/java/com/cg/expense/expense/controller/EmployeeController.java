@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.expense.expense.bean.Employee;
+import com.cg.expense.expense.exception.EmployeeException;
 import com.cg.expense.expense.service.IEmployeeService;
 
 @RestController
@@ -29,7 +30,12 @@ public class EmployeeController {
 		
 		@GetMapping("/getbyid/{empId}")
 		public Employee getEmployeeById(@PathVariable Long empId) {
-			return service.getEmployeeById(empId);
+			Employee emp=service.getEmployeeById(empId);
+			if(emp==null)
+				throw new EmployeeException("Employee Details Not Found"+empId);
+			else
+				return emp;
+				
 		}
 		
 		@PostMapping("/create")

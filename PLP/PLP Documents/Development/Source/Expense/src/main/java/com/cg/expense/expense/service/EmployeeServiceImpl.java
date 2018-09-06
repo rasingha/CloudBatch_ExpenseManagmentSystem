@@ -107,7 +107,19 @@ public class EmployeeServiceImpl implements IEmployeeService{
 	 - Description		:	Getting an Employee Detail
 	 ********************************************************************************************************/
 	public Employee getEmployeeById(Long empId) throws EmployeeException{
-		return dao.findById(empId).get();
+		Employee emp=null;
+	
+			boolean t = dao.findById(empId).isPresent();
+			if(t) {
+				
+				emp=dao.findById(empId).get();
+			}
+			else
+				throw new EmployeeException("Employee Not Found "+empId);
+		
+		return emp;
+		
+			
 	}
 
 }

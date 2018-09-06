@@ -15,7 +15,7 @@ public class Employee {
 	@GeneratedValue
 	private Long empId;
 	
-	@NotNull
+	@NotNull()
 	@Size(min=3,message="Name should be atleast Three Characters")
 	@Pattern(regexp="^[A-Z]{1}[A-Z \\sa-z]{2,30}$",message="Employee Name should Start with a capital letter followed by combination of lowercase and uppercase letters within range of 3 to 30 characters.")
     private String empName;
