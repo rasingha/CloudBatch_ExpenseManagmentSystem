@@ -1,0 +1,27 @@
+***********SQL Queries**************
+
+---------------------------------------------------------------------------------------------------------------------------
+NOTE: In this We have used JPA Repository which has inbuilt methods to perform SQL operations. So we are extending our base repository with JPARepository to use its method to perform CRUD operations
+---------------------------------------------------------------------------------------------------------------------------
+
+>> How to insert a new project?
+     projectDao.save(project);
+
+***************	
+
+>> How to select the details of projects based on project Id?
+	projectDao.findById(projectId).get();	
+
+***************	
+
+>> How to Update the details based on Id?
+     projectDao.save(project);
+
+***************
+
+
+>> How to delete a project details based on Id?
+	projectDao.deleteById(projectId);
+
+**************
+
